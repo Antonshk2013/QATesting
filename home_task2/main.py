@@ -17,10 +17,13 @@ def driver():
     yield driver
     driver.quit()
 
-def test_about_page(driver):
+def test_payments_methods(driver):
     driver.get("https://itcareerhub.de/ru")
-    sleep(1)
+    sleep(2)
     link_payment_method = driver.find_element(By.LINK_TEXT, "Способы оплаты")
-    sleep(1)
+    sleep(2)
     link_payment_method.click()
-    sleep(1)
+    sleep(2)
+    driver.save_screenshot("payments_methods.png")
+    sleep(2)
+    driver.quit()
