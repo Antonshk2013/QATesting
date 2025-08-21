@@ -19,7 +19,7 @@ def driver():
 
 
 
-def test_change_languig(driver):
+def test_home_work3(driver):
     start_url = "https://itcareerhub.de/ru"
     driver.get(start_url)
 
