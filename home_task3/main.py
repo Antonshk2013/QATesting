@@ -44,8 +44,24 @@ def test_home_work3(driver):
     for text in texts:
         assert driver.find_element(By.LINK_TEXT, text), f"Link '{text}' not found"
 
+
+def test_home_work3_1(driver):
     """# Проверяет, что на странице отображаются: Кнопки переключения языка (ru и de)"""
-    button_lang_de = driver.find_element(By.LINK_TEXT, "de")
+    start_url = "https://itcareerhub.de/ru"
+    driver.get(start_url)
+    driver.implicitly_wait(5)
+    button_lang_de = driver.find_element(By.LINK_TEXT, 'de')
+    driver.implicitly_wait(5)
+    button_lang_de.click()
+    deutsch_element = driver.find_element(By.CSS_SELECTOR, 'div.tn-atom[field="tn_text_1709210644671"]')
+    deutsch_text = "Deutschland"
+    text = deutsch_element.text
+    assert deutsch_text in text, "Немецкий текст найден"
+
+def test_home_work3_2(driver):
+    start_url = "https://itcareerhub.de/ru"
+    driver.get(start_url)
+    button_lang_de = driver.find_element(By.LINK_TEXT, 'de')
     button_lang_ru = driver.find_element(By.LINK_TEXT, "ru")
     assert button_lang_de.is_displayed(), "Button 'de' is hidden"
     assert button_lang_ru.is_displayed(), "Button 'ru' is hidden"
@@ -53,8 +69,9 @@ def test_home_work3(driver):
     """# Проверяет, что на странице отображаются: Кнопки переключения языка (ru и de)"""
     icon = driver.find_element(By.CSS_SELECTOR, 'img[imgfield="tn_img_1710153310161"]')
     icon.click()
-    driver.implicitly_wait(2)
+    driver.implicitly_wait(5)
 
     """Проверяет, что на странице отображаются Проверить что текст “Если вы не дозвонились, заполните форму на сайте. Мы свяжемся с вами” отображается"""
     text = "Если вы не дозвонились, заполните форму на сайте. Мы свяжемся с вами"
+
     assert text in driver.page_source, "Waiting anothe text"
